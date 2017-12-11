@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+</head>
+
+<body>
+    <form>
+        <input type="text" placeholder="search" id="search-input" />
+        <button type="submit" id="submit-button">Submit</button>
+    </form>
+    <h3>Data below:</h3>
+    <div id="stuff"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    
+    $("#submit-button").on("click", function(e) {
+        e.preventDefault();
+
+        //value from search-input
+        var searchValue = $("#search-input").val().trim();
+
+        //your API key
+        var googleAPIKey = 'AIzaSyDfIrwEUZ0uUeJT2hDf9mK5ISRRT2einag';
+
+        //proxy url for the class
+        var apiURL = 'https://proxy-cbc.herokuapp.com/proxy';
+
+        //the url for google places
+        var queryURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.8530221,-117.18319989999999&radius=15000&type=restaurant,store&keyword='+searchValue+'&key='+googleAPIKey;
+
+        $.ajax({
+            url: apiURL,
+            method: 'POST',
+            data: {
+                'url': queryURL
+            }
+        }).done(function(response) {
+            var res = JSON.stringify(response);
+            $("#stuff").text(res);
+        });
+    });
+    </script>
+</body>
+
+</html>
