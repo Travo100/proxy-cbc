@@ -32,7 +32,7 @@ $.ajax({
 })
 ```
 
-5. Our request should work perfectly now but we still have to do something with the data that will get sent back to us following our request. It should be inside and object which we'll call response.
+5. Our request should work perfectly now but we still have to do something with the data that will get sent back to us. It should be inside an object which we'll call response.
 ```javascript
 .done(function(response) {
   console.log(response)
